@@ -1,0 +1,20 @@
+Ejericico 7:
+    
+    Ejercicio de silumacin..
+    tiene un bule que esta controlado por un timepo. cada iteracion suma timepo hacia adelante. 
+    
+    la impresora es paginas por minuto. mi trabajo es de un minuto.
+    
+    cada imunto tengo 5 porcieno de probrabilidades de que me caiga un trabajo.
+    
+    el bucle itera cada minuto.
+        la impresarao toma un trabajo, si esta libre.
+        10 pagina por minuto. se fija cuando minutos tiene el trabajo.
+        si termina, en la cola tengo el tiempo de llegada
+        scamos el tiempo de llegada menos el timepo actual. cuando el trbaajo se haya ocmpletado.
+        luego la cumulamos y contamos como compledo el trbaajo.
+        la dif. entre el acumulado y el contador da el tiempo qu me pide.
+        
+        en una impresar puede tener 2 trabajos.
+        si la imrpesar llega a 7 paginas quire deicr que imprime 2 paginas del otro trabajo.
+        
