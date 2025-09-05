@@ -41,9 +41,31 @@ class listaSecuencial:
         else:
             print("la posicion esta fuera de rango")
 
-    def suprimir(self):
-        pass
+    def suprimir(self, pos):
+        if self.__cantidad != 0:
+            if 1 <= pos <= self.__cantidad:
+                print("suprime en posicion determinada")
+                shift = self.__cantidad - pos
+                siguiente = pos
+                while shift >0:
+                    self.__arreglo[siguiente-1] = self.__arreglo[siguiente]
+                    siguiente +=1
+                    shift-=1
+                self.__ul-=1
+                self.__cantidad-=1
+            else:
+                print("la posicion esta fuera de rango")
+        else:
+            print("Lista vacia")
 
+    def recuperar(self, pos):
+        if self.__cantidad != 0:
+            if 1 <= pos <= self.__ul+1:
+                return self.__arreglo[pos-1]
+            else:
+                print("la posicion esta fuera de rango")
+        else:
+            print("No se puede recuperar elemento - Lista vacia")
 
     def anterior(self, pos):
         if 1 < pos <= self.__cantidad:
@@ -72,9 +94,16 @@ if __name__ == "__main__":
     lista.insertar(20,1)
     lista.insertar(10,2)
     lista.insertar(70, 3)
-    #lista.insertar(50, 2)
+    lista.insertar(50, 1)
+    print("--Lista luego de insertar--\n")
     lista.mostrar()
-    sig= lista.siguiente(2)
+    print("--------------------------\n")
+    lista.suprimir(2)
+    print("--Lista luego de suprimir--\n")
+    lista.mostrar()
+
+
+    """sig= lista.siguiente(2)
     print("siguiente:",sig)
     ant = lista.anterior(3)
-    print("anteior:", ant)
+    print("anteior:", ant)"""
