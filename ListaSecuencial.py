@@ -2,6 +2,7 @@ import numpy as np
 
 class listaSecuencial:
     __ul:int
+    __pr:int
     __cantidad:int
     __tamaño:int
     __arreglo: np.ndarray
@@ -9,6 +10,7 @@ class listaSecuencial:
 
     def __init__(self, tamaño=0):
         self.__ul = 0
+        self.__pr = 0
         self.__cantidad = 0
         self.__tamaño = tamaño
         self.__arreglo = np.zeros(tamaño, dtype=int)
@@ -21,6 +23,7 @@ class listaSecuencial:
             print("inserta al principio si esta vacia")
             self.__arreglo[self.__ul] = item
             self.__ul=0
+            self.__pr = 0
             self.__cantidad += 1
         elif pos-1 == self.__ul+1:
             print("inserta al final")
@@ -38,6 +41,7 @@ class listaSecuencial:
                 shift-=1
             self.__arreglo[pos-1] = item
             self.__cantidad+=1
+            self.__ul+=1
         else:
             print("la posicion esta fuera de rango")
 
@@ -67,6 +71,21 @@ class listaSecuencial:
         else:
             print("No se puede recuperar elemento - Lista vacia")
 
+    def buscar(self, elemento):
+        #retorna la posicion
+        i=0
+        pos =0
+        while i<self.__cantidad:
+            if self.__arreglo[i] == elemento:
+                pos =i
+                i =self.__cantidad
+            i+=1
+
+        if pos == self.__cantidad:
+            print("no se encontro el elemento")
+        else:
+            return pos+1
+
     def anterior(self, pos):
         if 1 < pos <= self.__cantidad:
             print("anteriohhhr:",pos - 1)
@@ -95,12 +114,20 @@ if __name__ == "__main__":
     lista.insertar(10,2)
     lista.insertar(70, 3)
     lista.insertar(50, 1)
+
+
     print("--Lista luego de insertar--\n")
     lista.mostrar()
     print("--------------------------\n")
     lista.suprimir(2)
     print("--Lista luego de suprimir--\n")
     lista.mostrar()
+
+    print("Buscar elemento\n")
+    pos = lista.buscar(70)
+    print(f"Posicion:{pos}")
+
+
 
 
     """sig= lista.siguiente(2)

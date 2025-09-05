@@ -1,6 +1,6 @@
 class Nodo:
     __sig: None
-    __item: int
+    __dato: int
 
     def __init__(self, dato):
         self.__dato = dato
