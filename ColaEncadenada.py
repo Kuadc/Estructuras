@@ -20,7 +20,7 @@ class colaEnca:
             self.__ul.setSig(unNodo)
         self.__ul = unNodo
         self.__cantidad += 1
-        return self.__ul.getDato()
+        return
 
     def vacia(self):
         return self.__cantidad == 0
