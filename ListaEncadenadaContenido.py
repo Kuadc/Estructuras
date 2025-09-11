@@ -74,7 +74,6 @@ class ListaEncadenada:
                 else:
                     aux = self.siguiente(aux)
                     pos+=1
-
             print("posicion encontrada:",pos)
             return pos
         else:
@@ -117,7 +116,7 @@ class ListaEncadenada:
         return nodo.getSig()
 
     def anterior(self, nodo):
-        #otra forma seria iterar hasta encontrar el anterior.
+        #otra forma seria iterar hasta encontrar el anterior. ( elemento anterior no el nodo)
         return nodo
 
     def vacia(self):

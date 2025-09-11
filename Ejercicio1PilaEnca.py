@@ -8,7 +8,7 @@ class Nodo:
         self.__dato = dato
         self.__sig = None
 
-    def cargarsig(self, nodo):
+    def setSig(self, nodo):
         self.__sig = nodo
 
 #obtener siguiente
@@ -52,7 +52,7 @@ if __name__ == "__main__":
 
 
 
-
+#IMPLEMENTACION TERMINADA
 
 
 

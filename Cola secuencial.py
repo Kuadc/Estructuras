@@ -1,5 +1,4 @@
 
-
 import numpy as np
 
 class cola:
@@ -20,12 +19,14 @@ class cola:
     #inserta por el ultimo lugar o cola.
     def insertar(self,x):
         if self.__cantidad < self.__max:
-            self.__arreglo[self.__cantidad]=x
+            self.__arreglo[self.__ul]=x
             self.__ul = (self.__ul+1) % self.__max
+            print("inserto nuevo elemento")
+            print("nuevo ultimo:",self.__ul)
             self.__cantidad +=1
             return x
         else:
-            return 0
+            print("No hay espacio libre en la cola")
             
         
     
@@ -37,7 +38,7 @@ class cola:
     #suprime por el primer lugar
     def suprimir(self):
         x =0
-        if self.__vacia:
+        if not self.vacia:
             print("Pila esta vacia")
         else:
             x = self.__arreglo[self.__pr]
@@ -63,5 +64,12 @@ if __name__ == "__main__":
     c1 = cola(3)
     c1.insertar(4)
     c1.insertar(6)
+    c1.insertar(7)
+    c1.insertar(23)
     c1.mostrar()
-    
+
+    print("\n \n ---------------suprimiendo-----------------\n")
+    c1.suprimir()
+    c1.insertar(10)
+    c1.mostrar()
+    #IMPLEMENTACION TERMINADA

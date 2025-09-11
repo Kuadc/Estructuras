@@ -9,7 +9,7 @@ class listaSecuencial:
 
 
     def __init__(self, tamaño=0):
-        self.__ul = -1
+        self.__ul = 0
         self.__cantidad = 0
         self.__tamaño = tamaño
         self.__arreglo = np.zeros(tamaño, dtype=int)
@@ -23,7 +23,6 @@ class listaSecuencial:
         if self.vacia():
             print("inserta al principio si esta vacia")
             self.__arreglo[self.__ul] = item
-            self.__ul=0
             self.__cantidad += 1
         elif item and self.__cantidad <self.__tamaño:
             print("inserta en posicion determinada")
@@ -125,6 +124,8 @@ if __name__ == "__main__":
 
     lista.insertar(20)
 
+    lista.mostrar()
+
     lista.insertar(10)
 
     lista.insertar(15)
@@ -139,20 +140,21 @@ if __name__ == "__main__":
     print("--Lista luego de insertar--\n")
     lista.mostrar()
 
-    lista.suprimir(15)
+    #lista.suprimir(15)
     print("\n--------------------------\n")
     print("--Lista luego de suprimir--\n")
     
-    lista.mostrar()
+    #lista.mostrar()
 
-    lista.suprimir(30)
+    #lista.suprimir(30)
     print("\n--------------------------\n")
     print("--Lista luego de suprimir--\n")
-    lista.mostrar()
+    #lista.mostrar()
 
 
 
-    lista.insertar(30)
+    #lista.insertar(30)
     print("--Lista luego de insertar--\n")
-    lista.mostrar()
+    #lista.mostrar()
 
+#IMPLEMENTACION TERMINADA

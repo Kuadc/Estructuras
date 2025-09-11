@@ -3,3 +3,4 @@
 o buscar en el insertar porque seria realizar 2 veces busquedas.
 
 [] Listaencadenada: para encontrar el anterior de un nodo, hay una forma de no iterar hasta encontrar el anterior?
+[] Consulta de teoria: Definir un objeto de datos.
