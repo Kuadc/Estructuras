@@ -1,18 +1,16 @@
 import numpy as np
 
+#Lista Secuencial por Posicion
 class listaSecuencial:
     __ul:int
     __pr:int
     __cantidad:int
-    __tamaño:int
     __arreglo: np.ndarray
 
 
     def __init__(self, tamaño=0):
-        self.__ul = 0
-        self.__pr = 0
+        self.__ul = -1
         self.__cantidad = 0
-        self.__tamaño = tamaño
         self.__arreglo = np.zeros(tamaño, dtype=int)
 
     def vacia(self):
@@ -30,46 +28,43 @@ class listaSecuencial:
             self.__arreglo[self.__ul+1] =item
             self.__ul +=1
             self.__cantidad +=1
-            return
         elif 1 <= pos <= self.__ul+1:
             print("inserta en posicion determinada")
-            shift = self.__cantidad - (pos-1)
             ultimo = self.__ul
-            while shift >0:
-                self.__arreglo[ultimo+1] = self.__arreglo[ultimo]
-                ultimo -=1
-                shift-=1
+            while ultimo >= pos-1:
+                self.__arreglo[ultimo + 1] = self.__arreglo[ultimo]
+                ultimo -= 1
             self.__arreglo[pos-1] = item
-            self.__cantidad+=1
-            self.__ul+=1
+            self.__cantidad += 1
+            self.__ul += 1
         else:
             print("la posicion esta fuera de rango")
 
     def suprimir(self, pos):
-        if self.__cantidad != 0:
+        if self.vacia() == False:
             if 1 <= pos <= self.__cantidad:
                 print("suprime en posicion determinada")
-                shift = self.__cantidad - pos
-                siguiente = pos
-                while shift >0:
-                    self.__arreglo[siguiente-1] = self.__arreglo[siguiente]
-                    siguiente +=1
-                    shift-=1
-                self.__ul-=1
-                self.__cantidad-=1
+                siguiente = self.__ul
+                while pos <= siguiente:
+                    self.__arreglo[pos] = self.__arreglo[pos + 1]
+                    pos += 1
+                self.__ul -= 1
+                self.__cantidad -= 1
             else:
                 print("la posicion esta fuera de rango")
         else:
             print("Lista vacia")
 
-    def recuperar(self, pos):
-        if self.__cantidad != 0:
-            if 1 <= pos <= self.__ul+1:
-                return self.__arreglo[pos-1]
+    def recuperar(self, elemento):
+        # retorna el elemento si lo encuentra
+        if self.vacia() == False:
+            pos = self.buscar(elemento)
+            if 0 <= pos <= self.__ul:
+                return self.__arreglo[pos]
             else:
-                print("la posicion esta fuera de rango")
+                print("El elemento no se encuentra en la lista")
         else:
-            print("No se puede recuperar elemento - Lista vacia")
+            print("Lista vacia")
 
     def buscar(self, elemento):
         #retorna la posicion
@@ -84,7 +79,7 @@ class listaSecuencial:
         if pos == self.__cantidad:
             print("no se encontro el elemento")
         else:
-            return pos+1
+            return pos
 
     def anterior(self, pos):
         if 1 < pos <= self.__cantidad:
@@ -106,6 +101,18 @@ class listaSecuencial:
         while i<self.__cantidad:
             print(f"item numero {i+1}: {self.__arreglo[i]}")
             i+=1
+
+    def primerElemento(self):
+        if self.vacia() == False:
+            return self.__arreglo[0]
+        else:
+            print("Lista Vacia")
+
+    def ultimoElemento(self):
+        if self.vacia() == False:
+            return self.__arreglo[self.__ul]
+        else:
+            print("Lista Vacia")
 
 
 if __name__ == "__main__":
