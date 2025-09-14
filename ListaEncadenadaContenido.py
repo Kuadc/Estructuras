@@ -4,11 +4,16 @@ class ListaEncadenada:
     __ul = None
     __cantidad: int
     __cab = None
+    __anterior = None
+    __siguiente = None
+
 
     def __init__(self):
         self.__cab = None
         self.__cantidad =0
         self.__ul = None
+        self.__anterior = None
+        self.__siguiente = None
 
     def insertar(self, elemento):
         #este insertar contempla el self.__ul, pero es mas largo
@@ -47,13 +52,13 @@ class ListaEncadenada:
         #En este insertar no contemplo el self.__ul, por lo tanto tendria que iterar en metodo "ultimoElemento"
         unNodo = Nodo(elemento)
         pos = self.buscar(elemento)
-        if self.__cab == None or pos ==0:
+        if self.__cab == None or pos == 0:
             unNodo.setSig(self.__cab)
             self.__cab= unNodo
             self.__cantidad += 1
         else:
             aux = self.__cab
-            anterior = None
+            anterior = self.__cab
             i = 0
             while i < pos:
                 anterior = self.anterior(aux)
@@ -62,11 +67,16 @@ class ListaEncadenada:
             unNodo.setSig(aux)
             anterior.setSig(unNodo)
 
-
+    def insertarSimple(self, elemento):
+        if self.vacia():
+            print("lista vacia")
+            return
+        if elemento:
+            pass
     def buscar(self, elemento):
         if self.vacia() == False:
             aux = self.__cab
-            pos = 0
+            pos=0
             bandera = False
             while aux != None and bandera == False:
                 if elemento < aux.getDato():
@@ -75,9 +85,11 @@ class ListaEncadenada:
                     aux = self.siguiente(aux)
                     pos+=1
             print("posicion encontrada:",pos)
+            self.__anterior =
             return pos
         else:
             print("Lista vacia")
+            return -1
 
 
     def suprimir(self, elemento):
@@ -136,6 +148,7 @@ if __name__ == "__main__":
     print("\ninserto 30 en la posicion 0")
     lista.insertarconul(30)
 
+
     lista.insertarconul(40)
     lista.insertarconul(20)
     lista.insertarconul(80)
@@ -144,15 +157,15 @@ if __name__ == "__main__":
     #lista.ultimoElemento()
     #lista.primerElemento()
 
-    lista.suprimir(20)
+    #lista.suprimir(20)
 
     print("Luego de suprimir el primer elemento '20'")
-    lista.mostrar()
+    #lista.mostrar()
 
-    lista.suprimir(50)
+    #lista.suprimir(50)
 
     print("Luego de suprimir el primer elemento '50'")
-    lista.mostrar()
+    #lista.mostrar()
 
 
 

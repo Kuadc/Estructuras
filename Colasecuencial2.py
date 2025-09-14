@@ -20,8 +20,9 @@ class cola:
     #inserta por el ultimo lugar o cola.
     def insertar(self,x):
         if self.__cantidad < self.__max:
-            self.__arreglo[self.__cantidad]=x
-            print("--------Inserta trbaajo", self.__arreglo[self.__cantidad])
+            self.__arreglo[self.__ul]=x
+            print("elemento:", self.__cantidad)
+            print("--------Inserta trbaajo:", self.__arreglo[self.__ul])
             self.__ul = (self.__ul+1) % self.__max
             self.__cantidad +=1
             return x
@@ -37,12 +38,11 @@ class cola:
     
     #suprime por el primer lugar
     def suprimir(self):
-        if self.vacia:
+        if self.vacia():
             print("Pila esta vacia")
         else:
             x = self.__arreglo[self.__pr]
             self.__pr = (self.__pr+1)%self.__max
-            print("primer elemento:",self.__arreglo[self.__pr].getPag())
             self.__cantidad -=1
             return x
     
@@ -51,7 +51,7 @@ class cola:
         j=0
         if self.vacia() == False:
             while j<self.__cantidad:
-                print(f"Item:{self.__arreglo[i]}")
+                print(f"Item:{self.__arreglo[j]}")
                 i=(i+1)%self.__max
                 j+=1
         

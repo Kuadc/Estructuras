@@ -63,9 +63,9 @@ if __name__ == "__main__":
     
     c1 = cola(3)
     c1.insertar(4)
-    c1.insertar(6)
-    c1.insertar(7)
-    c1.insertar(23)
+    #c1.insertar(6)
+    #c1.insertar(7)
+    #c1.insertar(23)
     c1.mostrar()
 
     print("\n \n ---------------suprimiendo-----------------\n")

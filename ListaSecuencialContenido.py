@@ -6,13 +6,16 @@ class listaSecuencial:
     __cantidad:int
     __tamaño:int
     __arreglo: np.ndarray
-
+    __anterior:int
+    __siguiente: int
 
     def __init__(self, tamaño=0):
         self.__ul = 0
         self.__cantidad = 0
         self.__tamaño = tamaño
         self.__arreglo = np.zeros(tamaño, dtype=int)
+        self.__anterior=0
+        self.__siguiente = 0
 
     def vacia(self):
         return self.__cantidad == 0
@@ -24,6 +27,7 @@ class listaSecuencial:
             print("inserta al principio si esta vacia")
             self.__arreglo[self.__ul] = item
             self.__cantidad += 1
+
         elif item and self.__cantidad <self.__tamaño:
             print("inserta en posicion determinada")
             pos = self.buscar(item)
@@ -37,7 +41,7 @@ class listaSecuencial:
             self.__ul += 1
 
         else:
-                print("la posicion esta fuera de rango o la lista esta llena")
+            print("la posicion esta fuera de rango o la lista esta llena")
 
     def buscar(self, elemento):
         #retorna la posicion- implementar busqueda binaria
@@ -57,6 +61,8 @@ class listaSecuencial:
                 max = medio - 1
 
         #retorna la posicion exacta
+        self.__anterior =self.__arreglo[pos-1]
+        self.__siguiente = self.__arreglo[pos + 1]
         return pos
 
     def suprimir(self, item):
@@ -85,22 +91,21 @@ class listaSecuencial:
                 print("El elemento no se encuentra en la lista")
         else:
             print("Lista vacia")
-    def anterior(self, pos):
-        #CONSULTA: si tengo que retornar el elemento anterior o la posicion.
-        if 1 < pos <= self.__cantidad:
-            return pos-1
+    def anterior(self, elemento):
+        if self.vacia() == False:
+            self.buscar(elemento)
+            return self.__anterior
         else:
-            print("Error, el anterior esta fuera de rango")
+            print("Lista vacia")
 
-    def siguiente(self, pos):
-        pos -=1
-        if 1 <= pos <self.__ul:
-            return pos+1
+    def siguiente(self, elemento):
+        if self.vacia() == False:
+            self.buscar(elemento)
+            return self.__siguiente
         else:
-            print("Error, el siguiente esta fuera de rango")
+            print("Lista vacia")
 
     def mostrar(self):
-        print("para mostrar")
         i=0
         while i<self.__cantidad:
             print(f"item numero {i+1}: {self.__arreglo[i]}")
@@ -123,38 +128,50 @@ if __name__ == "__main__":
 
 
     lista.insertar(20)
-
+    print("Luego del primer elemento 20")
     lista.mostrar()
+
 
     lista.insertar(10)
-
-    lista.insertar(15)
-
-    lista.insertar(50)
-
-    lista.insertar(30)
-
-    lista.insertar(18)
-
-
-    print("--Lista luego de insertar--\n")
+    print("Luego del segundo elemento 10")
     lista.mostrar()
 
+
+    lista.insertar(15)
+    print("Luego del tercero elemento 15")
+    lista.mostrar()
+
+    print("Luego del cuarto elemento 50")
+    lista.insertar(50)
+    lista.mostrar()
+
+    print("Luego del cquinto elemento 50")
+    lista.insertar(30)
+    lista.mostrar()
+
+    #lista.insertar(18)
+
+
+    #print("--Lista luego de insertar--\n")
+    #lista.mostrar()
+
     #lista.suprimir(15)
-    print("\n--------------------------\n")
-    print("--Lista luego de suprimir--\n")
+    #print("\n--------------------------\n")
+    #print("--Lista luego de suprimir--\n")
     
     #lista.mostrar()
 
     #lista.suprimir(30)
-    print("\n--------------------------\n")
-    print("--Lista luego de suprimir--\n")
+    #print("\n--------------------------\n")
+    #print("--Lista luego de suprimir--\n")
     #lista.mostrar()
 
 
 
     #lista.insertar(30)
-    print("--Lista luego de insertar--\n")
+    #print("--Lista luego de insertar--\n")
     #lista.mostrar()
+
+    print("anterior:", lista.anterior(20))
 
 #IMPLEMENTACION TERMINADA
