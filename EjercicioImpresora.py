@@ -42,7 +42,6 @@ class impresora:
                     estado = 120
 
 
-
     def start(self, cola, pag):
         trab = paginas(pag, self.__reloj)
         cola.insertar(trab)
