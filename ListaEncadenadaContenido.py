@@ -57,35 +57,24 @@ class ListaEncadenada:
             self.__cab= unNodo
             self.__cantidad += 1
         else:
-            aux = self.__cab
-            anterior = self.__cab
-            i = 0
-            while i < pos:
-                anterior = self.anterior(aux)
-                aux = self.siguiente(aux)
-                i += 1
-            unNodo.setSig(aux)
-            anterior.setSig(unNodo)
+            unNodo.setSig(self.__anterior.getSig())
+            self.__anterior.setSig(unNodo)
 
-    def insertarSimple(self, elemento):
-        if self.vacia():
-            print("lista vacia")
-            return
-        if elemento:
-            pass
     def buscar(self, elemento):
         if self.vacia() == False:
             aux = self.__cab
+            anterior = self.__cab
             pos=0
             bandera = False
             while aux != None and bandera == False:
                 if elemento < aux.getDato():
                     bandera = True
                 else:
+                    anterior = aux
                     aux = self.siguiente(aux)
                     pos+=1
             print("posicion encontrada:",pos)
-            self.__anterior =
+            self.__anterior = anterior
             return pos
         else:
             print("Lista vacia")
@@ -124,12 +113,13 @@ class ListaEncadenada:
         print(f"ultimo:{self.__ul.getDato()}")
         return self.__ul.getDato()
 
-    def siguiente(self, nodo):
-        return nodo.getSig()
+    def siguiente(self, elemento):
+        self.buscar(elemento)
+        return self.__siguiente
 
-    def anterior(self, nodo):
-        #otra forma seria iterar hasta encontrar el anterior. ( elemento anterior no el nodo)
-        return nodo
+    def anterior(self, elemento):
+        self.buscar(elemento)
+        return self.__anterior
 
     def vacia(self):
         return self.__cab == None

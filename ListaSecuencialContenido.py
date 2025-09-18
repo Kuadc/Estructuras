@@ -31,7 +31,6 @@ class listaSecuencial:
         elif item and self.__cantidad <self.__tamaño:
             print("inserta en posicion determinada")
             pos = self.buscar(item)
-
             ultimo = self.__ul
             while ultimo >= pos:
                 self.__arreglo[ultimo + 1] = self.__arreglo[ultimo]
@@ -39,7 +38,6 @@ class listaSecuencial:
             self.__arreglo[pos] = item
             self.__cantidad += 1
             self.__ul += 1
-
         else:
             print("la posicion esta fuera de rango o la lista esta llena")
 
