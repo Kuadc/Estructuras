@@ -36,7 +36,7 @@ class PilaEnca:
 
        return unNodo.getDato()
 
-  def suprimir(self, item):
+  def suprimir(self):
       if self.vacia():
           print("Pila vacia")
           return
@@ -65,6 +65,9 @@ if __name__ == "__main__":
      Pila.insertar(4)
      Pila.insertar(5)
      Pila.insertar(6)
+     Pila.mostrar()
+
+     x = Pila.suprimir()
      Pila.mostrar()
 
 
