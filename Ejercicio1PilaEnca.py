@@ -52,7 +52,7 @@ class PilaEnca:
 
   def mostrar(self):
 
-    aux = self.__cabeza
+    aux = self.__tope
 
     while aux != None:
        print(f"\n Items = {aux.getDato()}")
