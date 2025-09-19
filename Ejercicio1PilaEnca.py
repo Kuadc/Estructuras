@@ -20,18 +20,35 @@ class Nodo:
  
 class PilaEnca:
   __cant : int
-  __cabeza : None
+  __tope:None
 
   def __init__(self,cant=0):
      self.__cant = cant
-     self.__cabeza = None  
+     self.__tope = None
+
 
   def insertar(self, item):
 
        unNodo = Nodo(item)
-       unNodo.setSig(self.__cabeza)
-       self.__cabeza = unNodo
+       unNodo.setSig(self.__tope)
+       self.__tope = unNodo
        self.__cant+=1
+
+       return unNodo.getDato()
+
+  def suprimir(self, item):
+      if self.vacia():
+          print("Pila vacia")
+          return
+      else:
+          aux = self.__tope
+          self.__tope = self.__tope.getSig()
+          self.__cant-=1
+          return aux.getDato()
+
+  def vacia(self):
+      return self.__cant == 0
+
 
   def mostrar(self):
 

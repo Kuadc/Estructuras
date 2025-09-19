@@ -51,6 +51,7 @@ class Pila:
 
 if __name__ == "__main__":
     unapila = Pila(10)
+    otrapila = unapila
     unapila.conversor(8)
     unapila.mostrar()
 

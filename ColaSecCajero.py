@@ -1,3 +1,4 @@
+from trabajo import paginas
 
 import numpy as np
 
@@ -8,12 +9,13 @@ class cola:
     __ul:int
     __arreglo: np.ndarray
 
-    def __init__(self, max=0):
+    def __init__(self, max=0, minutos =0):
         self.__cantidad = 0
         self.__max = max
-        self.__arreglo = np.zeros(self.__max, dtype=int)
+        self.__arreglo = np.empty(self.__max, dtype=int)
         self.__pr = 0
         self.__ul = 0
+        self.__minAten = minutos
         
         
     #inserta por el ultimo lugar o cola.
@@ -21,53 +23,41 @@ class cola:
         if self.__cantidad < self.__max:
             self.__arreglo[self.__ul]=x
             self.__ul = (self.__ul+1) % self.__max
-            print("inserto nuevo elemento")
-            print("nuevo ultimo:",self.__ul)
             self.__cantidad +=1
             return x
         else:
-            print("No hay espacio libre en la cola")
+            return 0
             
-
+        
+    
     def vacia(self):
         return self.__cantidad == 0
-
+    
+    
+    
     #suprime por el primer lugar
     def suprimir(self):
-        x =0
-        if not self.vacia:
+        if self.vacia():
             print("Pila esta vacia")
         else:
             x = self.__arreglo[self.__pr]
             self.__pr = (self.__pr+1)%self.__max
-            print("primer elemento:",self.__pr)
             self.__cantidad -=1
-        
-        return x
+            return x
     
     def mostrar(self):
         i=self.__pr
         j=0
         if self.vacia() == False:
             while j<self.__cantidad:
-                print(f"Item:{self.__arreglo[i]}")
+                print(f"Item:{self.__arreglo[j]}")
                 i=(i+1)%self.__max
                 j+=1
-        
+
+    def cantidad(self):
+        return self.__cantidad
 
 
-        
-if __name__ == "__main__":
-    
-    c1 = cola(3)
-    c1.insertar(4)
-    #c1.insertar(6)
-    #c1.insertar(7)
-    #c1.insertar(23)
-    c1.mostrar()
-
-    print("\n \n ---------------suprimiendo-----------------\n")
-    c1.suprimir()
-    c1.insertar(10)
-    c1.mostrar()
-    #IMPLEMENTACION TERMINADA
+    #metodos propios para solucionar cajero
+    def getMinutos(self):
+        return self.__minAten
