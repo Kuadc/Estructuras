@@ -34,7 +34,7 @@ class impresora:
                     estado+=tiempo
                 elif tiempo >120:
                     unTrabajo.setPag()
-                    cola.insertar(unTrabajo)
+                    cola.insertarNuevo(unTrabajo, )
                     estado=120
                     self.__reloj +=120
             else:
@@ -44,12 +44,12 @@ class impresora:
 
     def start(self, cola, pag):
         trab = paginas(pag, self.__reloj)
-        cola.insertar(trab)
+        cola.insertarNuevo(trab, )
         while self.__reloj < self.__tms:
             if self.__reloj !=0 and self.__reloj % 300 == 0:
                 print("se ejecuta:", self.__reloj)
                 trab = paginas(40, self.__reloj)
-                cola.insertar(trab)
+                cola.insertarNuevo(trab, )
                 cola.mostrar()
 
             if cola.vacia():

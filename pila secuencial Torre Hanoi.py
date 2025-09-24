@@ -67,7 +67,7 @@ class Pila:
             print(f"disco actual en torre destino: {self.__arreglo[self.__tope]}")
             x= torreOrigen.suprimir()
             if self.__arreglo[self.__tope] <x:
-                torreOrigen.insertar(x)
+                torreOrigen.insertarNuevo(x, )
                 print("No se puede realizar este cambio, el tamaño del disco es menor, intente nuevamente")
                 
             else:

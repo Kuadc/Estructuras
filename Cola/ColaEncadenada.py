@@ -21,7 +21,6 @@ class colaEnca:
         self.__ul = unNodo
         self.__cantidad += 1
         return
-
     def vacia(self):
         return self.__cantidad == 0
 

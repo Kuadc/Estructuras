@@ -33,14 +33,13 @@ class Pila:
             self.__tope -=1
             return x
 
-    def mostrar(self,cadena=""):
+    def mostrar(self):
         i = self.__tope
         if self.vacia()==False:
-            print(f"{cadena}")
             while(i>=0):
                 print(f"{self.__arreglo[i]}")
                 i-=1
-        else: print(f"{cadena} Vacia")
+        else: print(f"Lista Vacia")
                 
     def conversor(self,num):
         while num >=2:
@@ -52,7 +51,7 @@ class Pila:
 if __name__ == "__main__":
     unapila = Pila(10)
     otrapila = unapila
-    unapila.conversor(8)
+    unapila.conversor(40)
     unapila.mostrar()
 
     # IMPLEMENTACION TERMINADA

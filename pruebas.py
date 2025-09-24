@@ -1,7 +1,4 @@
 import random
-lista = [2,1,1]
-menor = min(lista)
-print("lista ordenada: ", menor)
-numero = random.choice(lista)
-print("numero aleatorio",numero)
-print(type(numero))
+numero = random.random()
+if 0<= random.random() <= 1 /2 :
+    print(f"{numero}")

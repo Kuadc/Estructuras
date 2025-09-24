@@ -19,7 +19,7 @@ class listaSecuencial:
 
     def vacia(self):
         return self.__cantidad == 0
-    
+
     def insertar(self, item):
         #la lista por contenido se inserta ordenado
         #agrego cuando la lista esta vacia
@@ -68,12 +68,14 @@ class listaSecuencial:
         if self.vacia() == False:
                 pos = self.buscar(item)
                 if  0<= pos <=self.__ul:
+                    x = self.__arreglo[pos]
                     siguiente = self.__ul
                     while pos <=siguiente:
                         self.__arreglo[pos] = self.__arreglo[pos+1]
                         pos+=1
                     self.__ul-=1
                     self.__cantidad-=1
+                    return x
                 else:
                     print("El elemento no se encuentra en la lista")
         else:
@@ -173,3 +175,6 @@ if __name__ == "__main__":
     print("anterior:", lista.anterior(20))
 
 #IMPLEMENTACION TERMINADA
+    pos = lista.suprimir(10)
+    print(f"posicion encontrada busqueda binaria:{pos}")
+    lista.mostrar()

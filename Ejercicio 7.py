@@ -1,4 +1,4 @@
-from ColaEncadenada import colaEnca
+from Cola.ColaEncadenada import colaEnca
 
 class impresora:
     __tms =0
@@ -31,18 +31,18 @@ class impresora:
             self.__reloj +=1
         if trabajo >self.__tiempomax:
             cola.suprimir()
-            cola.insertar(trabajo)
+            cola.insertarNuevo(trabajo, )
         self.__estado = "libre"
 
     def comienzo(self, cola,trabajo):
         while self.__reloj < self.__tms:
             if (trabajo>1):
-                cola.insertar(trabajo)
+                cola.insertarNuevo(trabajo, )
                 trabajo =0
 
             if self.__reloj % 5 ==0:
                 nuevoTrabajo = int(input("Ingrese cantidad de paginas:"))
-                cola.insertar(nuevoTrabajo)
+                cola.insertarNuevo(nuevoTrabajo, )
 
             if self.__estado == "libre":
                 if cola.vacia() == False:

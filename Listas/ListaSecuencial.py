@@ -114,10 +114,10 @@ class listaSecuencial:
 
 if __name__ == "__main__":
     lista = listaSecuencial(5)
-    lista.insertar(20,1)
-    lista.insertar(10,2)
-    lista.insertar(70, 3)
-    lista.insertar(50, 1)
+    lista.insertarNuevo(20,1)
+    lista.insertarNuevo(10,2)
+    lista.insertarNuevo(70, 3)
+    lista.insertarNuevo(50, 1)
 
 
     print("--Lista luego de insertar--\n")
