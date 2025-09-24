@@ -57,7 +57,7 @@ class listaSecuencial:
             else:
                 pos = medio
                 max = medio - 1
-
+        
         #retorna la posicion exacta
         self.__anterior =self.__arreglo[pos-1]
         self.__siguiente = self.__arreglo[pos + 1]

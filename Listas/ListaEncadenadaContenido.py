@@ -51,14 +51,25 @@ class ListaEncadenada:
     def insertarconul(self, elemento):
         #En este insertar no contemplo el self.__ul, por lo tanto tendria que iterar en metodo "ultimoElemento"
         unNodo = Nodo(elemento)
-        pos = self.buscar(elemento)
-        if self.__cab == None or pos == 0:
+        
+        if self.__cab == None:
             unNodo.setSig(self.__cab)
             self.__cab= unNodo
             self.__cantidad += 1
         else:
-            unNodo.setSig(self.__anterior.getSig())
-            self.__anterior.setSig(unNodo)
+            pos = self.buscar(elemento)
+            if 0<= pos <= self.__cantidad:
+                if pos == 0:
+                    unNodo.setSig(self.__cab)
+                    self.__cab= unNodo
+                    self.__cantidad += 1
+                else:
+                    unNodo.setSig(self.__anterior.getSig())
+                    self.__anterior.setSig(unNodo)
+                    self.__cantidad += 1
+            else:
+                print("posicion fuera de rango")
+
 
     def buscar(self, elemento):
         if self.vacia() == False:
@@ -71,7 +82,7 @@ class ListaEncadenada:
                     bandera = True
                 else:
                     anterior = aux
-                    aux = self.siguiente(aux)
+                    aux = aux.getSig()
                     pos+=1
             print("posicion encontrada:",pos)
             self.__anterior = anterior
@@ -90,15 +101,15 @@ class ListaEncadenada:
             anterior = None
             i = 0
             while aux != None and elemento != aux.getDato():
-                anterior = self.anterior(aux)
+                anterior = aux
                 aux = aux.getSig()
             if aux != None:
                 anterior.setSig(aux.getSig())
                 self.__cantidad -= 1
             else:
-                print("el dato no se encuentra en dicha posicion")
+                print("Elemento no encontrado")
 
-                
+
     def recuperar(self):
         pass
     def mostrar(self):
@@ -137,27 +148,37 @@ if __name__ == "__main__":
 
     lista.insertarconul(50)
     lista.insertarconul(70)
+    print("\ninserto 70 en la posicion 1")
+    lista.mostrar()
+    print("-------------------------------------")
     print("\ninserto 30 en la posicion 0")
     lista.insertarconul(30)
+    lista.mostrar()
+    print("-------------------------------------")
 
-
+    print("\ninserto 40 en la posicion 1")
     lista.insertarconul(40)
+    lista.mostrar()
+    print("-------------------------------------")
+    
     lista.insertarconul(20)
+
+    lista.insertarconul(35)
     lista.insertarconul(80)
 
     lista.mostrar()
     #lista.ultimoElemento()
     #lista.primerElemento()
 
-    #lista.suprimir(20)
+    lista.suprimir(20)
 
     print("Luego de suprimir el primer elemento '20'")
-    #lista.mostrar()
+    lista.mostrar()
 
-    #lista.suprimir(50)
+    lista.suprimir(50)
 
     print("Luego de suprimir el primer elemento '50'")
-    #lista.mostrar()
+    lista.mostrar()
 
 
 
