@@ -97,6 +97,8 @@ class ListaEncadenada:
                 self.__cantidad -= 1
             else:
                 print("el dato no se encuentra en dicha posicion")
+
+                
     def recuperar(self):
         pass
     def mostrar(self):

@@ -41,12 +41,14 @@ class listaSecuencial:
         if self.vacia() == False:
             if 1 <= pos <= self.__cantidad:
                 print("suprime en posicion determinada")
+                x = self.__arreglo[pos-1]
                 siguiente = self.__ul
                 while pos <= siguiente:
                     self.__arreglo[pos] = self.__arreglo[pos + 1]
                     pos += 1
                 self.__ul -= 1
                 self.__cantidad -= 1
+                return x
             else:
                 print("la posicion esta fuera de rango")
         else:
