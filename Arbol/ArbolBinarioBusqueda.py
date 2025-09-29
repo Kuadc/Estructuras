@@ -10,6 +10,19 @@ class Abb:
     def insertaHoja(self, nodo):
         self.__raiz = nodo
 
+    def buscar(self, x, nodo):
+        if nodo.getDato() == None:
+            print("arbol vacio")
+        else:
+            if nodo.getDato() == x:
+                print("Elemento encontrado")
+            else:
+                if x < nodo.getDato():
+                    self.buscar(x, nodo.getIzq())
+                else:
+                    if x > nodo.getDato():
+                        self.buscar(x , nodo.getDer())
+    
     def insertarNuevo(self, x, nod):
         if nod == None:
             nodo = NodoArbol(x)
@@ -36,6 +49,7 @@ class Abb:
         return self.__raiz
 
 
+
     def iniciar(self,x):
         nodo = NodoArbol(x)
         self.__raiz = nodo
@@ -54,3 +68,4 @@ if __name__ == "__main__":
 
     print("por Izquierda")
     a.preOrden(a.getCabeza())
+    a.buscar(5, a.getCabeza())
