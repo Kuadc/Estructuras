@@ -9,7 +9,7 @@ class listaSecuencial:
 
 
     def __init__(self, tamaño=0):
-        self.__ul = -1
+        self.__ul = 0
         self.__cantidad = 0
         self.__arreglo = np.zeros(tamaño, dtype=int)
 
@@ -26,8 +26,8 @@ class listaSecuencial:
             return
 
         if 0 <= pos <= self.__ul+1:
-            ultimo = self.__ul+1
-            while ultimo > pos:
+            ultimo = self.__cantidad
+            while ultimo >= pos:
                 print("ingreso")
                 self.__arreglo[ultimo] = self.__arreglo[ultimo-1]
                 ultimo -= 1
@@ -44,6 +44,24 @@ class listaSecuencial:
                 x = self.__arreglo[pos-1]
                 siguiente = self.__ul
                 while pos <= siguiente:
+                    self.__arreglo[pos] = self.__arreglo[pos + 1]
+                    pos += 1
+                self.__ul -= 1
+                self.__cantidad -= 1
+                return x
+            else:
+                print("la posicion esta fuera de rango")
+        else:
+            print("Lista vacia")
+
+    
+    def suprimir2(self, pos):
+        if self.vacia() == False:
+            if 1 <= pos <= self.__cantidad:
+                print("suprime en posicion determinada")
+                x = self.__arreglo[pos]
+                siguiente = self.__ul
+                while pos < siguiente:
                     self.__arreglo[pos] = self.__arreglo[pos + 1]
                     pos += 1
                 self.__ul -= 1
@@ -113,30 +131,42 @@ class listaSecuencial:
         else:
             print("Lista Vacia")
 
+    
+    def eliminarDuplicados(self):
+        i=0
+        j=0
+  
+        while i< self.__cantidad:
+            dato = self.__arreglo[i]
+            if j<self.__cantidad:
+                if dato == self.__arreglo[j] and i!=j:
+                    self.suprimir2(j)
+                    i+=1
+                    j=0
+                j+=1 
+            elif j==self.__cantidad:
+                j=0
+                i+=1
+            else:
+                j+=1
+        
+
 
 if __name__ == "__main__":
-    lista = listaSecuencial(5)
+    lista = listaSecuencial(7)
     lista.insertarNuevo(20,1)
     lista.insertarNuevo(10,2)
     lista.insertarNuevo(70, 3)
     lista.insertarNuevo(50, 1)
+    lista.insertarNuevo(70, 1)
+    lista.insertarNuevo(50, 5)
 
 
     print("--Lista luego de insertar--\n")
     lista.mostrar()
-    print("--------------------------\n")
-    lista.suprimir(2)
-    print("--Lista luego de suprimir--\n")
+
+    print("--Lista luego eliminar duplicados--\n")
+    #lista.eliminarDuplicados()
+    lista.suprimir(5)
     lista.mostrar()
 
-    print("Buscar elemento\n")
-    pos = lista.buscar(70)
-    print(f"Posicion:{pos}")
-
-
-
-
-    """sig= lista.siguiente(2)
-    print("siguiente:",sig)
-    ant = lista.anterior(3)
-    print("anteior:", ant)"""

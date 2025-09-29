@@ -12,48 +12,63 @@ class ListaEncadenada:
         self.__ul = None
         self.__pr = None
 
-    def insertar(self, elemento,pos ):
-        unNodo = Nodo(elemento)
-        if self.__cab == None:
-            unNodo.setSig(self.__cab)
-            self.__cab = unNodo
-            self.__pr = unNodo
-            self.__ul = unNodo
-            self.__cantidad+=1
+    def insertar(self, x,pos):
+        pos-=1
+        if self.__cab == None or pos ==0:
+            nodo = Nodo(x)
+            nodo.setSig(self.__cab)
+            self.__cab = nodo
+            self.__cantidad +=1
+        else: 
+            print("posicion determinada",pos)
+            if 1<= pos <=self.__cantidad:
+                i=0
+                aux = self.__cab
+                anterior = self.__cab
+                while i<pos:
+                    anterior = aux
+                    aux = aux.getSig()
+                    i+=1
+                nodo = Nodo(x)
+                nodo.setSig(aux)
+                anterior.setSig(nodo)
+                self.__cantidad+=1
+            else:
+                print("fuera de rango")
+                    
 
-        if pos == self.__cantidad:
-            print("agrega al final")
-            #agrega al final
-            self.__ul.setSig(unNodo)
-            self.__ul = unNodo
-            self.__cantidad+=1
+
+    def vacia(self):
+        return self.__cantidad == 0
+
+    def suprimir(self, pos):
+        if self.vacia():
+            print("lista vacia")
         else:
-            if 1<= pos <self.__cantidad:
-                print("agrega en posicion determinada")
-                if pos == 1:
-                    print("si la posicion es 1")
-                    unNodo.setSig(self.__cab)
-                    self.__cab = unNodo
-                    self.__pr = unNodo
-                    self.__cantidad+=1
+            pos-=1
+            if 0<= pos <=self.__cantidad-1:
+                if pos==0:
+                    x = self.__cab.getDato()
+                    self.__cab = self.__cab.getSig()
+                    self.__cantidad-=1
                 else:
-                    print("si la possicoin es mayor a 2")
-                    aux = self.__cab
-                    anterior = self.__cab
                     i=0
-                    while aux != None and i<pos-1:
-                        anterior = aux
+                    aux = self.__cab
+                    ant = self.__cab
+                    while i<pos:
+                        ant = aux
                         aux = aux.getSig()
                         i+=1
-                    if i == pos-1:
-                        anterior.setSig(unNodo)
-                        unNodo.setSig(aux)
-                        self.__cantidad+=1
+                    print(f"dato en aux:{aux.getDato()}")
+                    x = aux.getDato()
+                    ant.setSig(aux.getSig())
+                    return x
             else:
-                print("\n---CUIDADO - Fuera de rango-----\n")
+                print("fuera de rango")
+                        
 
 
-    def suprimir(self, elemento , pos):
+    def suprimir2(self, elemento , pos):
 
         if 1 <= pos < self.__cantidad:
             if pos == 1 :
@@ -103,13 +118,14 @@ if __name__ == "__main__":
     lista.insertar(40,2)
 
     #insertando no valido
-    lista.insertar(60, 6)
+    lista.insertar(60, 1)
+    lista.insertar(90, 3)
 
     lista.mostrar()
 
     #suprimiendo
     print("\n suprimiendo.....")
-    lista.suprimir(30,1)
+    lista.suprimir(1)
     print("\n")
     lista.mostrar()
 

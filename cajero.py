@@ -1,4 +1,4 @@
-from ColaSecCajero import cola
+from Cola.ColaSecCajero import cola
 import random
 
 class Cajero:

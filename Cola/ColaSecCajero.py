@@ -1,4 +1,3 @@
-from trabajo import paginas
 
 import numpy as np
 

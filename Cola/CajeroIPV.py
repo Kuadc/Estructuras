@@ -14,11 +14,12 @@ class Cajero:
         self.__contador = 0
         self.__atencion = 0
         self.__tiempoAcumulado = 0
+
     def start(self,cola):
         while self.__reloj < self.__tms:
             if 0<= random.random() <= 1 / 2:
                 print("Inserto en la cola con tiempo:", self.__reloj)
-                cola.insertarNuevo(self.__reloj, )
+                cola.insertar(self.__reloj, )
 
             if self.__atencion ==0 and cola.vacia() == False:
                 x = cola.suprimir()
@@ -26,8 +27,10 @@ class Cajero:
                 print(f"reloj cuando se suprime:{self.__reloj}")
                 print("tiempo de la cola suprimida:", x)
                 self.__tiempoAcumulado += self.__reloj - x
-                self.__atencion = 10
-            else:
+                self.__atencion = 15
+            
+            if self.__atencion <=15:
+                print("resta atencion")
                 self.__atencion-=1
 
             self.__reloj+=1

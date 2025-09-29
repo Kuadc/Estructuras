@@ -14,40 +14,7 @@ class ListaEncadenada:
         self.__ul = None
         self.__anterior = None
         self.__siguiente = None
-
-    def insertar(self, elemento):
-        #este insertar contempla el self.__ul, pero es mas largo
-        unNodo = Nodo(elemento)
-        if self.__cab == None:
-            unNodo.setSig(self.__cab)
-            self.__cab = unNodo
-            self.__ul = unNodo
-            self.__cantidad+=1
-        else:
-            if elemento:
-                print("agrega en posicion determinada")
-                pos = self.buscar(elemento)
-                if pos ==0:
-                    unNodo.setSig(self.__cab)
-                    self.__cab = unNodo
-                    self.__cantidad += 1
-                else:
-                    aux = self.__cab
-                    anterior = None
-                    i =0
-                    while i<pos:
-                        anterior = self.anterior(aux)
-                        aux = self.siguiente(aux)
-                        i+=1
-                    unNodo.setSig(aux)
-                    anterior.setSig(unNodo)
-
-                    if pos == self.__cantidad:
-                        self.__ul = unNodo
-                    self.__cantidad+=1
-
-            else:
-                print("\n---CUIDADO - Fuera de rango-----\n")
+                
     def insertarconul(self, elemento):
         #En este insertar no contemplo el self.__ul, por lo tanto tendria que iterar en metodo "ultimoElemento"
         unNodo = Nodo(elemento)
