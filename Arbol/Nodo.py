@@ -10,6 +10,9 @@ class NodoArbol:
 
     def getDato(self):
         return self.__clave
+    def setDato(self, dato):
+        self.__clave = dato
+
 
     def getIzq(self):
         return self.__izq
