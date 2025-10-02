@@ -7,26 +7,26 @@ class Abb:
     def __init__(self):
         self.__raiz = None
 
-    def insertaHoja(self, nodo):
-        self.__raiz = nodo
+    def insertaHoja(self, raiz):
+        self.__raiz = raiz
 
-    def buscar(self, x, nodo):
-        if nodo.getDato() == None:
+    def buscar(self, x, raiz):
+        if raiz.getDato() == None:
             print("arbol vacio")
         else:
-            if nodo.getDato() == x:
+            if raiz.getDato() == x:
                 print("Elemento encontrado")
             else:
-                if x < nodo.getDato():
-                    self.buscar(x, nodo.getIzq())
+                if x < raiz.getDato():
+                    self.buscar(x, raiz.getIzq())
                 else:
-                    if x > nodo.getDato():
-                        self.buscar(x , nodo.getDer())
+                    if x > raiz.getDato():
+                        self.buscar(x , raiz.getDer())
     
     def insertarNuevo(self, x, nod):
         if nod == None:
-            nodo = NodoArbol(x)
-            return nodo
+            raiz = NodoArbol(x)
+            return raiz
         else:
             if x == nod.getDato():
                 print("Ya existe el elemento")
@@ -37,16 +37,45 @@ class Abb:
                 nod.setDer(self.insertarNuevo(x, nod.getDer()))
         return nod
 
-    def preOrden(self, nodo):
-        if nodo != None:
-            print(f"{nodo.getDato()}")
-            self.preOrden(nodo.getIzq())
-            self.preOrden(nodo.getDer())
+    def preOrden(self, raiz):
+        if raiz != None:
+            print(f"{raiz.getDato()}")
+            self.preOrden(raiz.getIzq())
+            self.preOrden(raiz.getDer())
+        else:
+            return
+    
+    def InOrden(self, raiz):
+        if raiz != None:
+            self.preOrden(raiz.getIzq())
+            print(f"{raiz.getDato()}")
+            self.preOrden(raiz.getDer())
+        else:
+            return
+
+    def PostOrden(self, raiz):
+        if raiz != None:
+            self.preOrden(raiz.getIzq())
+            self.preOrden(raiz.getDer())
+            print(f"{raiz.getDato()}")
         else:
             return
 
     def getCabeza(self):
         return self.__raiz
+
+    def altura(self, altura, raiz): # aqui recibo el elemento del raiz para comparar que altlura tiene o la altura es solo sobre la raiz?
+        if raiz.getIzq() != None:
+            return self.altura(altura, raiz.getIzq())+1
+        elif raiz.getDer() != None:
+            return self.altura(altura, raiz.getDer())+1
+        else: 
+            return altura
+
+    def hoja(self, raiz):
+        if raiz.getIzq() == None and raiz.getDer() == None:
+            return True
+        else: return False
 
     def grado(self, raiz):
         grado = 0
@@ -57,6 +86,7 @@ class Abb:
         else:
             grado = 2
         return grado
+    
     def hijo(self, raiz):
         if raiz.getDer() != None:
             return raiz.getDer()
@@ -95,9 +125,28 @@ class Abb:
 
 
     def iniciar(self,x):
-        nodo = NodoArbol(x)
-        self.__raiz = nodo
+        raiz = NodoArbol(x)
+        self.__raiz = raiz
 
+    def PuntoA(self, nodo, raiz):
+        if raiz.getDato() != None:
+            if raiz.getDato() == None:
+                print(f"Nodo padre:{nodo}")
+                return True
+            else:
+                if nodo < raiz.getDato():
+                    if (self.buscar(nodo, raiz.getIzq())):
+                        print(f"Padre:{raiz.getDato()}")
+                        if raiz.getDer() != None:
+                            print(f"Hermano:{raiz.getDer().getDato()}")
+                else:
+                    if nodo > raiz.getDato():
+                        if (self.buscar(nodo, raiz.getDer())):
+                            print(f"Padre:{raiz.getDato()}")
+                            if raiz.getIzq() != None:
+                                print(f"Hermano:{raiz.getIzq().getDato()}")
+        else:
+            print("Nodo no encontrado")
 
 if __name__ == "__main__":
 
@@ -107,12 +156,16 @@ if __name__ == "__main__":
     a.insertarNuevo(20, a.getCabeza())
     a.insertarNuevo(56, a.getCabeza())
     a.insertarNuevo(5, a.getCabeza())
+    altura = a.altura(0, a.getCabeza())
+    print("altura:", altura)
 
 
-
-    print("por Izquierda")
+    print("muestra por Izquierda primer")
     a.preOrden(a.getCabeza())
     a.buscar(5, a.getCabeza())
     a.suprimir(15, a.getCabeza())
     print("luego de suprimir")
     a.preOrden(a.getCabeza())
+    
+    altura = a.altura(0, a.getCabeza())
+    print("altura:", altura)
