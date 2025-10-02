@@ -85,7 +85,6 @@ class Abb:
                         maximo = self.maximo(raiz.getIzq())
                         print(f"maximo que encontro:{maximo.getDato()}")
                         raiz.setDato(maximo.getDato())
-                        print(f"Nueva raiz:{raiz.getDato()}")
                         raiz.setIzq(self.suprimir(maximo.getDato(), raiz.getIzq()))
                         return raiz
             elif raiz.getDato() > x:
