@@ -1,20 +1,24 @@
-from ArbolBinarioBusqueda import Abb
+from collections import Counter
+from Nodo import NodoArbol
+
+cadena ="abracadabra"
+cantidad = Counter(cadena)
+lista=[]
+for clave, valor in cantidad.items():
+    lista.append((clave,valor))
+
+orden = sorted(lista, key=lambda x: x[1])
+print(f"{orden}")
+
+nodo1= NodoArbol(lista[0])
+nodo2= NodoArbol(lista[1])
 
 
-if __name__ == "__main__":
 
-    a = Abb()
-    a.iniciar(15)
-    a.insertarNuevo(10, a.getCabeza())
-    a.insertarNuevo(20, a.getCabeza())
-    a.insertarNuevo(56, a.getCabeza())
-    a.insertarNuevo(5, a.getCabeza())10
 
-    print("muestra por Izquierda primer")
-    a.preOrden(a.getCabeza())
 
-    print("\n------------------------------")
-    print("------------Punto A-----------\n")
 
-    nodo = int(input("Ingrese un numero:"))
-    a.PuntoA(nodo, a.getCabeza())
+
+
+
+

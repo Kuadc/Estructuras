@@ -16,6 +16,7 @@ class Abb:
         else:
             if raiz.getDato() == x:
                 print("Elemento encontrado")
+                print("jsjasjsd")
             else:
                 if x < raiz.getDato():
                     self.buscar(x, raiz.getIzq())
@@ -130,23 +131,45 @@ class Abb:
 
     def PuntoA(self, nodo, raiz):
         if raiz.getDato() != None:
-            if raiz.getDato() == None:
-                print(f"Nodo padre:{nodo}")
+            if raiz.getDato() == nodo:
+                print(f"Nodo Encontrado:{nodo}")
                 return True
             else:
                 if nodo < raiz.getDato():
-                    if (self.buscar(nodo, raiz.getIzq())):
+                    band = self.PuntoA(nodo, raiz.getIzq())
+                    if (band):
                         print(f"Padre:{raiz.getDato()}")
                         if raiz.getDer() != None:
                             print(f"Hermano:{raiz.getDer().getDato()}")
                 else:
                     if nodo > raiz.getDato():
-                        if (self.buscar(nodo, raiz.getDer())):
+                        band = self.PuntoA(nodo, raiz.getDer())
+                        if (band):
                             print(f"Padre:{raiz.getDato()}")
                             if raiz.getIzq() != None:
                                 print(f"Hermano:{raiz.getIzq().getDato()}")
+                            else:
+                                print("No tiene hermanos")
         else:
             print("Nodo no encontrado")
+
+    def PuntoD(self, nodo, raiz):
+        if raiz.getDato() != None:
+            if raiz.getDato() == nodo:
+                print(f"Nodo Encontrado:{nodo}")
+                print(f"Sucesores")
+                self.preOrden(raiz)
+            else:
+                if nodo < raiz.getDato():
+                    self.PuntoD(nodo, raiz.getIzq())
+
+                else:
+                    if nodo > raiz.getDato():
+                        self.PuntoD(nodo, raiz.getDer())
+        else:
+            print("Nodo no encontrado")
+
+
 
 if __name__ == "__main__":
 
@@ -159,13 +182,30 @@ if __name__ == "__main__":
     altura = a.altura(0, a.getCabeza())
     print("altura:", altura)
 
+    print("\n------------------------------")
 
-    print("muestra por Izquierda primer")
+    print("------------Punto A-----------\n")
+    nodo = 56
+    a.PuntoA(nodo, a.getCabeza())
+
+    print("muestra por Izquierda primero ('Inorden VID')")
     a.preOrden(a.getCabeza())
-    a.buscar(5, a.getCabeza())
-    a.suprimir(15, a.getCabeza())
-    print("luego de suprimir")
-    a.preOrden(a.getCabeza())
+
+    print("\n------------------------------")
+
+    print("------------Punto D-----------\n")
+    nodo = 10
+    a.PuntoD(nodo, a.getCabeza())
+
+    print("\n------------------------------")
+    print("------------Ejercicio N°3-------\n")
+    cadena = "Carlos"
+
+
+    #a.buscar(5, a.getCabeza())
+    #a.suprimir(15, a.getCabeza())
+    #print("luego de suprimir")
+    #a.preOrden(a.getCabeza())
     
-    altura = a.altura(0, a.getCabeza())
-    print("altura:", altura)
+    #altura = a.altura(0, a.getCabeza())
+    #print("altura:", altura)
