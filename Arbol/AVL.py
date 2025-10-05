@@ -53,7 +53,7 @@ class AVLTree:
         if (self.altura(nodo.getIzq()) - self.altura(nodo.getDer())) > 1:
             print(f"----------------------------------> nodo que entro en crisis:{nodo.getDato()}")
             if self.altura(nodo.getIzq().getIzq()) >= self.altura(nodo.getIzq().getDer()):
-                print("Realizo rotacion simple")
+                print("Realizo rotacion simple Izquierda - Izquierda")
                 nodo = self.rotarConHijoIzquierdo(nodo)   # Caso Izquierda - Izquierda
             else:
                 print("Realizo doble rotacion izquierda derecha")
@@ -62,7 +62,7 @@ class AVLTree:
         elif self.altura(nodo.getDer()) - self.altura(nodo.getIzq()) >1:
             print(f"---------------------------------->nodo que entro en crisis:{nodo.getDato()}")
             if self.altura(nodo.getDer().getDer()) >= self.altura(nodo.getDer().getIzq()):
-                print("Realizo rotacion simple")
+                print("Realizo rotacion simple - Derecha-Derecha")
                 nodo = self.rotarConHijoDerecho(nodo) #caso Derecha-Derecha
             else:
                 print("Realizo doble rotacion derecha izquierda")
@@ -83,7 +83,6 @@ class AVLTree:
                 nodo.setIzq(self.insertarNuevo(x, nodo.getIzq()))
             else:
                 nodo.setDer(self.insertarNuevo(x, nodo.getDer()))
-        print(f"{nodo}")
         nodo = self.balance(nodo)
         return nodo
 
