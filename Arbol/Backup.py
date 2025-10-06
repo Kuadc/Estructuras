@@ -29,6 +29,18 @@ class AVLTree:
 
         return k1
 
+    #Rotación doble izquierda - derecha(LR)
+    def dobleRotacionConHijoIzquierdo(self, nodo):
+        nodo.setIzq(self.rotarConHijoDerecho(nodo.getIzq()))
+        nodo = self.rotarConHijoIzquierdo(nodo)
+        return nodo
+
+    #Rotacion doble derecha - Izquierda
+    def dobleRotacionConHijoDerecho(self, nodo):
+
+        nodo.setDer(self.rotarConHijoIzquierdo(nodo.getDer()))
+        nodo = self.rotarConHijoDerecho(nodo)
+        return nodo
 
     def altura(self, nodo):
         if nodo == None:
@@ -39,28 +51,22 @@ class AVLTree:
         if (nodo == None):
             return
         if (self.altura(nodo.getIzq()) - self.altura(nodo.getDer())) > 1:
-
-            #print(f"----------------------------------> nodo que entro en crisis:{nodo.getDato()}")
+            print(f"----------------------------------> nodo que entro en crisis:{nodo.getDato()}")
             if self.altura(nodo.getIzq().getIzq()) >= self.altura(nodo.getIzq().getDer()):
                 print("Realizo rotacion simple Izquierda - Izquierda")
                 nodo = self.rotarConHijoIzquierdo(nodo)   # Caso Izquierda - Izquierda
             else:
                 print("Realizo doble rotacion izquierda derecha")
-                nodo.setIzq(self.rotarConHijoDerecho(nodo.getIzq()))
-                nodo = self.rotarConHijoIzquierdo(nodo)
+                nodo = self.dobleRotacionConHijoIzquierdo(nodo) # caso Izquierda-Derecha
 
         elif self.altura(nodo.getDer()) - self.altura(nodo.getIzq()) >1:
-
-            #print(f"---------------------------------->nodo que entro en crisis:{nodo.getDato()}")
+            print(f"---------------------------------->nodo que entro en crisis:{nodo.getDato()}")
             if self.altura(nodo.getDer().getDer()) >= self.altura(nodo.getDer().getIzq()):
-
                 print("Realizo rotacion simple - Derecha-Derecha")
                 nodo = self.rotarConHijoDerecho(nodo) #caso Derecha-Derecha
             else:
                 print("Realizo doble rotacion derecha izquierda")
-
-                nodo.setDer(self.rotarConHijoIzquierdo(nodo.getDer()))
-                nodo = self.rotarConHijoDerecho(nodo)
+                nodo = self.dobleRotacionConHijoDerecho(nodo) #caso Derecha-Izquierda
 
         nodo.setH(max(self.altura(nodo.getIzq()), self.altura(nodo.getDer())) +1)
 
