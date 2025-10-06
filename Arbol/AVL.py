@@ -80,6 +80,33 @@ class AVLTree:
         nodo = self.balance(nodo)
         return nodo
 
+    def sup(self,x):
+        self.__raiz = self.suprimir(x,self.__raiz)
+
+    def minimo(self,nodo):
+        if nodo.getIzq() != None:
+            return self.minimo(nodo.getIzq())
+        else:
+            return nodo
+    def suprimir(self,x, nodo):
+        if nodo == None:
+            print("No se encontro el elemento")
+
+        if x < nodo.getDato():
+            nodo.setIzq(self.suprimir(x,nodo.getIzq()))
+        elif x>nodo.getDato():
+            nodo.setDer(self.suprimir(x, nodo.getDer()))
+        elif nodo.getIzq() != None and nodo.getDer() != None:
+            nodo.setDato(self.minimo(nodo.getDer()))
+            nodo.setDer(self.suprimir(nodo.getDato(),nodo.getDer()))
+        else:
+            if nodo.getIzq():
+                nodo = nodo.getIzq()
+            else:
+                nodo = nodo.getDer()
+        nodo = self.balance(nodo)
+
+        return nodo
     def preOrden(self, raiz):
         if raiz != None:
             print(f"{raiz.getDato()}")
@@ -118,7 +145,7 @@ if __name__ == "__main__":
 
 
 
-
-
     #a.preOrden(a.getCabeza())
     a.imprimir_arbol(a.getCabeza())
+
+    a.sup(4)
