@@ -97,7 +97,10 @@ class AVLTree:
         elif x>nodo.getDato():
             nodo.setDer(self.suprimir(x, nodo.getDer()))
         elif nodo.getIzq() != None and nodo.getDer() != None:
-            nodo.setDato(self.minimo(nodo.getDer()))
+            minimo = self.minimo(nodo.getDer())
+            nodo.setDato(minimo.getDato())
+
+            print(f"nodo minimo:{nodo.getDato()}")
             nodo.setDer(self.suprimir(nodo.getDato(),nodo.getDer()))
         else:
             if nodo.getIzq():
@@ -149,3 +152,14 @@ if __name__ == "__main__":
     a.imprimir_arbol(a.getCabeza())
 
     a.sup(4)
+
+    print("\nsuprimir 8")
+    a.sup(8)
+    a.sup(6)
+    a.sup(5)
+    a.sup(2)
+    a.sup(1)
+    a.sup(7)
+
+
+    a.imprimir_arbol(a.getCabeza())
