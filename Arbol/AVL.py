@@ -65,6 +65,8 @@ class AVLTree:
         nodo.setH(max(self.altura(nodo.getIzq()), self.altura(nodo.getDer())) +1)
 
         return nodo
+    def insertar(self,x):
+        self.__raiz = self.insertarNuevo(x, self.__raiz)
     def insertarNuevo(self, x, nodo):
         if nodo == None:
             nodo = NodoAvl(x)
@@ -97,10 +99,9 @@ class AVLTree:
         elif x>nodo.getDato():
             nodo.setDer(self.suprimir(x, nodo.getDer()))
         elif nodo.getIzq() != None and nodo.getDer() != None:
-            minimo = self.minimo(nodo.getDer())
-            nodo.setDato(minimo.getDato())
-
-            print(f"nodo minimo:{nodo.getDato()}")
+            #minimo = self.minimo(nodo.getDer())
+            #nodo.setDato(minimo.getDato())
+            nodo.setDato(self.minimo(nodo.getDer()).getDato())
             nodo.setDer(self.suprimir(nodo.getDato(),nodo.getDer()))
         else:
             if nodo.getIzq():
@@ -120,8 +121,7 @@ class AVLTree:
     def getCabeza(self):
         return self.__raiz
 
-    def insertar(self,x):
-        self.__raiz = self.insertarNuevo(x, self.__raiz)
+
 
     def imprimir_arbol(self, raiz, nivel=0):
         if raiz is not None:
@@ -152,8 +152,6 @@ if __name__ == "__main__":
     a.imprimir_arbol(a.getCabeza())
 
     a.sup(4)
-
-    print("\nsuprimir 8")
     a.sup(8)
     a.sup(6)
     a.sup(5)

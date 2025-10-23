@@ -169,6 +169,107 @@ class Abb:
         else:
             print("Nodo no encontrado")
 
+    #La cantidad de descendientes son todos los nodos que estran por debajo "cualquier numero"
+    def Descendientes(self, num):
+        self.cantDescendientes(self.__raiz, num)
+
+
+    def cantDescendientes(self, nodo, num):
+        if nodo == None:
+            print("Nodo no encontrado")
+            return
+        else:
+            if nodo.getDato() == num:
+                print("nodo encontrado")
+                cant = self.cantidad(nodo, 0)
+                print(f"cantidad de descendientes:{cant}")
+            elif num < nodo.getDato():
+                self.cantDescendientes(nodo.getIzq(), num)
+            else:
+                self.cantDescendientes(nodo.getDer(), num)
+
+    def cantidad(self, nodo, cant):
+        if nodo == None:
+            cant-=1
+            return cant
+        else:
+            cant = self.cantidad(nodo.getIzq(), cant + 1)
+            cant = self.cantidad(nodo.getDer(), cant + 1)
+            return cant
+
+
+    def imprimir_arbol(self, raiz, nivel=0):
+        if raiz is not None:
+            self.imprimir_arbol(raiz.getDer(), nivel + 1)
+            print("    " * nivel + f"{raiz.getDato()}")
+            self.imprimir_arbol(raiz.getIzq(), nivel + 1)
+
+    def nodoshojas(self):
+        self.nodoHojaRe(self.__raiz)
+
+
+    def nodoHojaRe(self, nodo):
+        if nodo == None:
+            return
+        elif nodo.getIzq() == None and nodo.getDer() == None:
+            print(f"Nodo hoja{nodo.getDato()}")
+        else:
+            self.nodoHojaRe(nodo.getDer())
+            self.nodoHojaRe(nodo.getIzq())
+
+
+
+    #----------------------Grado de un nodo------------------------------------
+    #---------------------------------------------------------------------------
+
+    def gradoDeNodo(self, nodo, num):
+        if nodo == None:
+            return
+        else:
+            if nodo.getDato() == num:
+                print("nodo encontrado, ver grado")
+                grado = self.grado(nodo)
+                print(f"grado del nodo:{grado}")
+            elif num < nodo.getDato():
+                self.gradoDeNodo(nodo.getIzq(), num)
+            else:
+                self.gradoDeNodo(nodo.getDer(), num)
+    def gradoNodo(self, num):
+        self.gradoDeNodo(self.__raiz, num)
+
+
+
+
+
+    #----------------------altura de un nodo------------------------------------
+    #---------------------------------------------------------------------------
+
+    def verAlturaNodo(self, nodo):
+        if not nodo:
+            return -1
+        alt_izq = self.verAlturaNodo(nodo.getIzq())
+        alt_der = self.verAlturaNodo(nodo.getDer())
+        return 1 + max(alt_izq, alt_der)
+
+
+    def buscarAlturaNodo(self, nodo, num):
+        if nodo == None:
+            return
+        else:
+            if nodo.getDato() == num:
+                print("Nodo encontrado, verticar alurta")
+                altura = self.verAlturaNodo(nodo)
+                print(f"Altura de nodo: {altura}")
+            elif num < nodo.getDato():
+                self.buscarAlturaNodo(nodo.getIzq(), num)
+            else:
+                self.buscarAlturaNodo(nodo.getDer(), num)
+    def alturaNodo(self, num):
+        if self.__raiz == None:
+            print("No hay nodos")
+        else:
+            self.buscarAlturaNodo(self.__raiz, num)
+
 
 
 if __name__ == "__main__":
@@ -179,6 +280,10 @@ if __name__ == "__main__":
     a.insertarNuevo(20, a.getCabeza())
     a.insertarNuevo(56, a.getCabeza())
     a.insertarNuevo(5, a.getCabeza())
+    a.insertarNuevo(19, a.getCabeza())
+    a.insertarNuevo(60, a.getCabeza())
+    a.insertarNuevo(13, a.getCabeza())
+    a.insertarNuevo(12, a.getCabeza())
     altura = a.altura(0, a.getCabeza())
     print("altura:", altura)
 
@@ -201,7 +306,13 @@ if __name__ == "__main__":
     print("------------Ejercicio N°3-------\n")
     cadena = "Carlos"
 
+    a.imprimir_arbol(a.getCabeza())
 
+    a.Descendientes(15)
+
+    a.nodoshojas()
+
+    a.alturaNodo(10)
     #a.buscar(5, a.getCabeza())
     #a.suprimir(15, a.getCabeza())
     #print("luego de suprimir")
