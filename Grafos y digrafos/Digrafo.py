@@ -31,7 +31,7 @@ class Digrafo:
         
     def REA(self, v):
         d = np.full(5, math.inf)
-        antesesor = np.zeros(self.__tamaño, int)
+        antesesor = np.full(self.__tamaño, -1)
         antesesor[v]=v
         d[v]=0
         unacola = ColaCircular(5)
@@ -51,19 +51,20 @@ class Digrafo:
         return antesesor
                 
     def camino(self, origen,destino):
-        antesesores = self.REA(origen)
+        antesesores= self.REA(origen)
         print(f"Camino de origen:{origen} a destino:{destino}")
         unapila = Pila(self.__tamaño)
         unapila.insertar(destino)
-        while origen != destino:
-            destino = antesesores[destino]
-            unapila.insertar(destino)
         
-        unapila.mostrar()
-            
-                   
-                    
-    def REP(self, v):
+        if antesesores[destino] == -1:
+            print("no hay camino")
+        else:
+            while origen != destino:
+                    destino = antesesores[destino]
+                    unapila.insertar(destino)
+            unapila.mostrar()
+                  
+    def REP(self):
         d = np.zeros(self.__tamaño, int)
         f = np.zeros(self.__tamaño, int)
         self.__tiempo = 0
@@ -79,12 +80,17 @@ class Digrafo:
         for u in self.__array[s].listaAdyacente():
             if d[u]==0:
                 self.Visita(u, d, f)
-        
+
         self.__tiempo+=1
         f[s]= self.__tiempo
-        #for i in range(5):
-        #print(f"-{d}-")
-        
+
+    
+    def conexo(self):
+        antesesor = self.REA(self.__array[0].getcabeza().getDato())
+        if np.any(antesesor):
+            print("No es conexo")
+        else:
+            print("es conexo")
         
         
         

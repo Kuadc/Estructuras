@@ -10,6 +10,8 @@ if __name__ == "__main__":
 
     print("Encadenada")
     grafo1 = Digrafo(5)
+    
+    #grafo
     grafo1.insertarEncadenada(0, 1)
     grafo1.insertarEncadenada(0, 4)
     
@@ -27,8 +29,23 @@ if __name__ == "__main__":
     grafo1.insertarEncadenada(4, 1)
     grafo1.insertarEncadenada(4, 2)
     
+    
+    #Digrafo no ponderado
+    """grafo1.insertarEncadenada(0, 1)
+    grafo1.insertarEncadenada(0, 4)
+    
+    grafo1.insertarEncadenada(1, 3)
+    
+    grafo1.insertarEncadenada(2, 4)
+    
+    grafo1.insertarEncadenada(3, 2)
+    
+    grafo1.insertarEncadenada(4, 1)"""
+    
+    
     grafo1.Adyacentes(0)
     grafo1.REA(3)
 
-    grafo1.camino(3,4)
+    grafo1.camino(2,0)
+    grafo1.REP()
 
