@@ -28,25 +28,8 @@ class Digrafo:
 
     def Adyacentes( self, v1):
         self.__array[v1].Adyacentes()
-
+        
     def REA(self, v):
-        d = np.full(5, math.inf)
-        d[v]=0
-        unacola = ColaCircular(5)
-        unacola.insertar(v)
-        while not unacola.vacia():
-            v = unacola.suprimir()
-            print(f"vertice suprimido:{v}")
-            aux = self.__array[v].getcabeza()
-            while aux != None:
-                if d[aux.getDato()]==np.inf:
-                    d[aux.getDato()]=d[v]+1
-                    unacola.insertar(aux.getDato())
-                aux = aux.getSig()
-        
-        print(f"-{d}-")
-        
-    def REA2(self, v):
         d = np.full(5, math.inf)
         antesesor = np.zeros(self.__tamaño, int)
         antesesor[v]=v
@@ -55,7 +38,6 @@ class Digrafo:
         unacola.insertar(v)
         while not unacola.vacia():
             v = unacola.suprimir()
-            print(f"vertice suprimido:{v}")
             aux = self.__array[v].getcabeza()
             while aux != None:
                 if d[aux.getDato()]==np.inf:
@@ -64,45 +46,19 @@ class Digrafo:
                     unacola.insertar(aux.getDato())
                 aux = aux.getSig()
         
-        print(f"-{d}-")
+        print(f"distancia de aristas-{d}-")
         print(f"{antesesor}\n\n")
         return antesesor
-        
-    def REACaminos(self, origen): 
-        distancia = np.full(5, math.inf)
-        visitado = np.zeros(self.__tamaño, dtype=bool)
-        antesesor = np.zeros(self.__tamaño, int)
-        unacola = ColaCircular(5)
-        distancia[0]=0
-        visitado[0]=True
-        antesesor[0]=origen
-        unacola.insertar(origen)
-        while not unacola.vacia():
-            v = unacola.suprimir()
-            print(f"vertice suprimido:{v}")
-            aux = self.__array[v].getcabeza()
-            while aux != None:
-                if visitado[aux.getDato()] == False:
-                    visitado[aux.getDato()]=True
-                    distancia[aux.getDato()]=distancia[v]+1
-                    antesesor[aux.getDato()]=v
-
-                    unacola.insertar(aux.getDato())
-                aux = aux.getSig()
-        
-        print(f"{visitado}")
-        print(f"{distancia}")
-        print(f"{antesesor}")
-        return antesesor
-
                 
     def camino(self, origen,destino):
-        antesesores = self.REA2(origen)
+        antesesores = self.REA(origen)
+        print(f"Camino de origen:{origen} a destino:{destino}")
         unapila = Pila(self.__tamaño)
         unapila.insertar(destino)
         while origen != destino:
             destino = antesesores[destino]
             unapila.insertar(destino)
+        
         unapila.mostrar()
             
                    

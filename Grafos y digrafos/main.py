@@ -28,7 +28,7 @@ if __name__ == "__main__":
     grafo1.insertarEncadenada(4, 2)
     
     grafo1.Adyacentes(0)
-    grafo1.REA(1)
-    #grafo1.REP(0)
+    grafo1.REA(3)
+
     grafo1.camino(3,4)
 
