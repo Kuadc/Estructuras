@@ -34,6 +34,13 @@ class Lista:
             aux = aux.getSig()
         return lista
         
+    def cantAristasSalida(self):
+        cant = 0
+        aux = self.__cabeza
+        while aux != None:
+            cant+=1
+            aux = aux.getSig()
+        return cant
         
     def suprimir(self):
         x = 0
@@ -50,3 +57,12 @@ class Lista:
 
     def getcabeza(self):
         return self.__cabeza
+
+    def cantAristas(self,u):
+        cant = 0
+        aux = self.__cabeza
+        while aux != None:
+            if aux.getDato() == u:
+                cant+=1
+            aux = aux.getSig()
+        return cant

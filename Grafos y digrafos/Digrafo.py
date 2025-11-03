@@ -92,18 +92,115 @@ class Digrafo:
         else:
             print("es conexo")
         
+    
         
+    def ciclico(self):
+        d = np.zeros(self.__tamaño, int)
+        f = np.zeros(self.__tamaño, int)
+        self.__tiempo = 0
+        for s in range(self.__tamaño):
+            if d[s] == 0:
+                if self.esCiclico(s,d,f):
+                    return False #se encontro un ciclo
+        print(f"{d}")
+        return True #no tiene ciclos
         
+    def esCiclico(self, s,d,f):
+        self.__tiempo+=1
+        d[s] = self.__tiempo
         
-        
-        
-        
-        
-        
+        for u in self.__array[s].listaAdyacente(): 
+            if d[u]==0:
+                if self.esCiclico(u, d, f):
+                    return True
+            elif f[u] ==0:
                 
-            
+                print(f"Ciclo detectado en {u}")
+                return True
+
+        self.__tiempo+=1
+        f[s]= self.__tiempo
+        return False
+    
+    def gradoEntrada(self, u):
+         #Cantidad de aristas que terminan en u
+         entrada = 0
+         for v in range(self.__tamaño):
+             entrada+=self.__array[v].cantAristas(u)
+         
+         print(f"Grado de entrada de {u}:{entrada}")
+         return entrada
+     
+    def gradoSalida(self, u):
+         salida = self.__array[u].cantAristasSalida()
+         print(f"Grado de salida de {u}:{salida}")
+         return salida
+     
+        
+    def NodoFuente(self, u):
+        if self.gradoSalida(u) >0 and self.gradoEntrada(u)==0:
+            print("Es nodo fuente")
+        else:
+            print("No es nodo fuente")
+    
+    def NodoPozo(self, u):
+        if self.gradoSalida(u) == 0 and self.gradoEntrada(u)>0:
+            print("Es nodo Pozo")
+        else:
+            print("No es nodo Pozo")
+        pass
+        
+                                                                                                                                                                                                                                                                                                                                 
+    def menordistancia(self, d,c):
+        """
+        Encuentra el vértice no visitado con la menor distancia.
+        """
+        min = np.inf
+        u = None 
+        
+        for v in range(self.__tamaño):
+            if not c[v] and d[v] < min:
+                min= d[v]
+                u = v
+        return u
         
         
+    def dijkstra2(self, v):
+        d = np.full(self.__tamaño, math.inf)
+        c = np.zeros(self.__tamaño, dtype=bool)
+        print(c)
+        a = np.full(self.__tamaño, -1)
+        d[v]=0
+    
+        
+        for n in range(self.__tamaño):
+             u = self.menordistancia(d,c)
+             print(f"u:{u}")
+             c[u] = True
+             
+             if u is None:
+                 break
+
+             aux = self.__array[u].getcabeza()
+             while aux != None:
+                 vecino = aux.getDato()
+                 peso = aux.getArista()
+                 
+                 if not c[vecino]:
+                     distancia = d[u] + peso
+                     
+                     if distancia < d[vecino]:
+                         d[vecino] = distancia
+                         a[vecino] = u
+                         
+                 aux = aux.getSig()
+        return d
         
         
+    def distancias(self,v):
+        d = self.dijkstra2(v)
+        print(f"distancias de u:{d}")
         
+    
+
+    

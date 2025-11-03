@@ -17,3 +17,6 @@ class Nodo:
 
     def getDato(self):
         return self.__vertice
+    
+    def getArista(self):
+        return self.__arista
