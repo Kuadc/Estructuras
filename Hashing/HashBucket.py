@@ -13,7 +13,7 @@ class HashBucket:
         self.__m = n//c
         self.__t = int((n//c) * 1.2)
         self.__array = np.zeros(self.__t, dtype=object)
-        self.__contador = np.zeros(self.__m,dtype=object)
+        self.__contador = np.zeros(self.__t,dtype=object)
 
     def myhashDivision(self, num):
         hash = num % self.__m
@@ -38,14 +38,19 @@ class HashBucket:
             self.overflow(num)
 
     def overflow(self, num):
-        if self.__array[self.__m+1] ==0:
-            self.__array[self.__m+1] = Bucket(self.__c)
-            self.__array[self.__m+1].insertar(num)
-            return
-
-        if self.__array[self.__m+1].buscar(num):
-            print("El Elemento ya existe")
-            return
+        tamaño = self.__t - self.__m
+        i=0
+        while i<tamaño:
+            if self.__array[self.__m + i] == 0:
+                self.__array[self.__m + i] = Bucket(self.__c)
+                self.__array[self.__m + i].insertar(num)
+                self.__contador[self.__m + i] += 1
+                return
+            elif self.__contador[self.__m + i] < self.__c:
+                    self.__array[self.__m + i].insertar(num)
+                    self.__contador[self.__m + i] += 1
+                    return
+            i+=1
 
     def mostrar(self):
         print(self.__array)
