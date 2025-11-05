@@ -218,6 +218,16 @@ class Abb:
             self.nodoHojaRe(nodo.getIzq())
 
 
+    def nodoHojaRaiz(self, nodo, izq, der):
+        if nodo == None:
+            return 0
+        elif nodo.getIzq() == None and nodo.getDer() == None:
+            return 1
+        else:
+            izq=self.nodoHojaRaiz(nodo.getDer(), izq, der)
+            der=self.nodoHojaRaiz(nodo.getIzq(), izq, der)
+            return (izq+der)
+
 
     #----------------------Grado de un nodo------------------------------------
     #---------------------------------------------------------------------------
@@ -234,6 +244,7 @@ class Abb:
                 self.gradoDeNodo(nodo.getIzq(), num)
             else:
                 self.gradoDeNodo(nodo.getDer(), num)
+
     def gradoNodo(self, num):
         self.gradoDeNodo(self.__raiz, num)
 
@@ -271,6 +282,43 @@ class Abb:
             self.buscarAlturaNodo(self.__raiz, num)
 
 
+    def NodoPadre(self, num, nodo):
+        if nodo == None:
+            return
+        else:
+            if nodo.getDato() == num:
+                return True
+            elif num < nodo.getDato():
+                band=self.NodoPadre(num, nodo.getIzq())
+                if band:
+                    print("Hijo encontrado")
+                    print(f"nodo padre:{nodo.getDato()}")
+            else:
+                band=self.NodoPadre(num, nodo.getDer())
+                if band:
+                    print("Hijo encontrado")
+                    print(f"nodo padre:{nodo.getDato()}")
+
+    def verNivel(self, nodo, nivel):
+        if nodo is None:
+            return nivel-1
+        else:
+            izq = self.verNivel(nodo.getIzq(), nivel+1)
+            der = self.verNivel(nodo.getDer(), nivel+1)
+            return max(izq,der)
+
+    
+    def nivelNodo(self, nodo, num):
+        if nodo is None:
+            return 
+        else:
+            if nodo.getDato() == num:
+                nivel=self.verNivel(nodo,0)
+                print(f"nivel de {num}: {nivel}")
+            elif num < nodo.getDato():
+                self.nivelNodo(nodo.getIzq(), num)
+            else:
+                self.nivelNodo(nodo.getDer(),num)
 
 if __name__ == "__main__":
 
@@ -291,7 +339,8 @@ if __name__ == "__main__":
 
     print("------------Punto A-----------\n")
     nodo = 56
-    a.PuntoA(nodo, a.getCabeza())
+    #a.PuntoA(nodo, a.getCabeza())
+    a.NodoPadre(nodo, a.getCabeza())
 
     print("muestra por Izquierda primero ('Inorden VID')")
     a.preOrden(a.getCabeza())
@@ -308,11 +357,16 @@ if __name__ == "__main__":
 
     a.imprimir_arbol(a.getCabeza())
 
-    a.Descendientes(15)
+    a.Descendientes(5)
 
     a.nodoshojas()
 
+    cantidad= a.nodoHojaRaiz(a.getCabeza(),0,0)
+    print(f"cantidad de hojas: {cantidad}")
+
     a.alturaNodo(10)
+
+    a.nivelNodo(a.getCabeza(), 20)
     #a.buscar(5, a.getCabeza())
     #a.suprimir(15, a.getCabeza())
     #print("luego de suprimir")
