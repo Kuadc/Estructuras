@@ -23,8 +23,6 @@ class ListaEncadenada:
                 return True
 
 
-
-
     def suprimir(self, pos):
         if self.__cab == None:
             return

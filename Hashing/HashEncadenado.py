@@ -2,15 +2,16 @@ import numpy as np
 from Nodo import Nodo
 from ListaEncadenada import ListaEncadenada
 
+from sympy import isprime
+
 class HashTable:
     __m:int
     __array: np.array
 
     def __init__(self,m):
-        self.__array = np.zeros(m,dtype=object)
-        self.__m = m
-
-
+        self.__m = isprime(m)
+        self.__array = np.zeros(self.__m,dtype=object)
+        
     #Metodos de Transformacion
     def myhashDivision(self, num):
         hash = num % self.__m
@@ -18,6 +19,8 @@ class HashTable:
 
     def myhashExtraccion(self, num):
         hash = (abs(num) % 100)%self.__m
+        return hash
+    
     def myhashPlegado(self, num):
         n = str(num)
         hash=0
@@ -37,6 +40,8 @@ class HashTable:
         for i in range(len(num)):
             hash += int(ord(num[i]) * (pow(10, i + 1)))
         return hash
+    
+    #Metodos de insercion, busqueda y eliminacion
     def insertar(self, num):
         if self.__array[self.myhashDivision(num)] == None:
             self.__array[self.myhashDivision(num)] = ListaEncadenada()
@@ -49,3 +54,10 @@ class HashTable:
         else:
             self.__array[self.myhashDivision(num)].insertar(num)
 
+    #isprime
+    def isprime(self, num):
+        while not isprime(num):
+            num += 1
+        return num
+    
+    
