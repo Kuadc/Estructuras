@@ -55,10 +55,15 @@ class HashBucket:
     def mostrar(self):
         print(self.__array)
 
+    def tamañoOvwerflow(self):
+        print(f"m: {self.__m} t:{self.__t}")
+        return self.__t - self.__m
 
 if __name__ == "__main__":
     b = HashBucket(30, 3)
     b.mostrar()
+    tam = b.tamañoOvwerflow()
+    print(f"Tamaño del area de overflow: {tam}")
 
 
 

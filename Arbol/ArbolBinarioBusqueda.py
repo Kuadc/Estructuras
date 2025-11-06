@@ -2,7 +2,6 @@ from Nodo import NodoArbol
 
 class Abb:
     __raiz:None
-    __nod:None
 
     def __init__(self):
         self.__raiz = None

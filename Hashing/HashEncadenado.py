@@ -7,9 +7,11 @@ from sympy import isprime
 class HashTable:
     __m:int
     __array: np.array
+    __col:int
 
-    def __init__(self,m):
-        self.__m = isprime(m)
+    def __init__(self,m, col):
+        self.__col = col
+        self.__m = isprime(m/col)
         self.__array = np.zeros(self.__m,dtype=object)
         
     #Metodos de Transformacion
@@ -60,4 +62,8 @@ class HashTable:
             num += 1
         return num
     
-    
+    def buscarClave(self, clave):
+        pos = self.myhashDivision(clave)
+        cantidad = self.__array[pos].buscarClave(clave)
+        print(f"El numero de itentos del elemento {clave} es: {cantidad}")
+            

@@ -2,6 +2,7 @@ from Nodo import Nodo
 
 class ListaEncadenada:
     __cab = None
+
     def __init__(self):
         self.__cab = None
 
@@ -21,6 +22,18 @@ class ListaEncadenada:
                 return False
             else:
                 return True
+    
+    def buscarClave(self, num):
+        cant = self.buscarRe(1,num, self.__cab)
+        return cant
+
+    def buscarRe(self,pos,num, aux):
+        if aux == None:
+            return -1
+        if aux.getDato() == num:
+            return pos
+        else:
+            return self.buscarRe(pos + 1, num, aux.getSig())
 
 
     def suprimir(self, pos):

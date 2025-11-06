@@ -5,8 +5,8 @@ class HashAbierto:
     __array: np.array
 
     def __init__(self, m):
-        self.__m = int(m//0.7)
-        print(f"Tamaño de la tabla hash ajustado a numero primo: {self.__m}")
+        self.__m = int(self.isprime(m)//0.7)
+
         self.__array = np.zeros(self.__m, dtype=object)
 
     def insertar(self, num):

@@ -10,11 +10,9 @@ from cola import ColaCircular
 
 class Digrafo:
     __array:np.array
-    __tiempo:int
     __tamaño: int
 
     def __init__(self, tamaño):
-        self.__tiempo  = 0
         self.__tamaño = tamaño
         self.__array = np.empty(tamaño, dtype=object)
         for i in range(tamaño):
