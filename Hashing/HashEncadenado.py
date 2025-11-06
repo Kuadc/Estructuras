@@ -46,7 +46,7 @@ class HashTable:
     #Metodos de insercion, busqueda y eliminacion
     def insertar(self, num):
         if self.__array[self.myhashDivision(num)] == None:
-            self.__array[self.myhashDivision(num)] = ListaEncadenada()
+            self.__array[self.myhashDivision(num)] = ListaEncadenada(self.__col)
             self.__array[self.myhashDivision(num)].insertar(num)
             return
 

@@ -104,6 +104,8 @@ class Abb:
                 izq = self.nodoHojaRe(nodo.getIzq())
                 der = self.nodoHojaRe(nodo.getDer())
                 return (izq+der)
+            
+
     def descendientesDirectos(self):
         cant = self.desRe(self.__raiz)
         print("cantidad de descendientes:", cant)
@@ -151,3 +153,5 @@ if __name__ == "__main__":
     a.nodoHoja()
     a.descendientesDirectos()
     a.nivel(4)
+
+    
