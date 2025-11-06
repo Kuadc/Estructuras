@@ -80,20 +80,7 @@ class HashAbierto:
 
 
     #metodos de prueba
-    def dobleHashing(self, num):
-        hash1 = self.myhashDivision(num)
-        mod = self.isprime_dobleHash(self.__m - 1)
-        hash2 = mod - (num % mod)
-        
-        return (hash1 + hash2) % self.__m
     
-    def pruebaLineal(self, num):
-        hash = self.myhashDivision(num)
-        i = 1
-        while self.__array[(hash + i) % self.__m] != None:
-            i += 1
-        return (hash + i) % self.__m
-
     def proximo(self, pos,i):
         pos = (pos + pow(pos,i)) % self.__m
         print(f"proxima posicion obtenida: {pos}")
