@@ -11,7 +11,7 @@ class HashTable:
 
     def __init__(self,m, col):
         self.__col = col
-        self.__m = isprime(m/col)
+        self.__m = esprimo(m/col)
         self.__array = np.zeros(self.__m,dtype=object)
         
     #Metodos de Transformacion
@@ -57,7 +57,7 @@ class HashTable:
             self.__array[self.myhashDivision(num)].insertar(num)
 
     #isprime
-    def isprime(self, num):
+    def esprimo(self, num):
         while not isprime(num):
             num += 1
         return num

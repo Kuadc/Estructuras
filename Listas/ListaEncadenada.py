@@ -105,8 +105,20 @@ class ListaEncadenada:
             aux = aux.getSig()
 
 
+    def sup(self, num):
+        self.__cab = self.supRE(num, self.__cab)
 
-
+    def supRE(self, num, aux):
+        if aux == None:
+            return
+        else:
+            if aux.getDato() == num:
+                aux = aux.getSig()
+                self.__cantidad -= 1
+                return aux
+            else:
+                self.supRE(num, aux.getSig())
+        return aux
 
 if __name__ == "__main__":
     lista = ListaEncadenada()
@@ -125,9 +137,11 @@ if __name__ == "__main__":
 
     #suprimiendo
     print("\n suprimiendo.....")
-    lista.suprimir(1)
+    #lista.suprimir(1)
+    lista.sup(60)
     print("\n")
     lista.mostrar()
+
 
 
 

@@ -13,7 +13,7 @@ class Bucket:
         self.__array = np.zeros(c, dtype=object)
 
 
-    def insertar(self, item):
+    def insertar2(self, item):
         #la lista por contenido se inserta ordenado
         #agrego cuando la lista esta vacia
         if self.__cantidad == 0:
@@ -35,6 +35,14 @@ class Bucket:
             return True
         else:
             return False
+        
+    def insertar(self, num):
+        if self.__cantidad < self.__tamaño:
+            self.__array[self.__ul] = num
+            self.__ul+=1
+            self.__cantidad += 1
+            return
+
 
     def buscar(self, elemento):
         #retorna la posicion- implementar busqueda binaria
@@ -51,3 +59,6 @@ class Bucket:
                 band = True
         return band
 
+    def mostrar(self):
+        #for i in range(self.__cantidad):
+            return self.__array

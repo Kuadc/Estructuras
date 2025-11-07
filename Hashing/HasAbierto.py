@@ -5,8 +5,7 @@ class HashAbierto:
     __array: np.array
 
     def __init__(self, m):
-        self.__m = int(self.isprime(m)//0.7)
-
+        self.__m = int(m//0.7)
         self.__array = np.zeros(self.__m, dtype=object)
 
     def insertar(self, num):
@@ -18,6 +17,36 @@ class HashAbierto:
         pos = self.buscarPos(num, pos)
         if pos != -1:
             self.__array[pos] = num
+
+    def insert(self, num):
+        pos = self.hashmodulo(num)
+        self.inReC(num, pos,1)
+    
+
+    # insertar recursivo con busqueda de residuo cuadratico
+    def inReC(self, num, pos, i):
+        if self.__array[pos] ==0:
+            self.__array[pos] = num
+            return
+        else:
+            if self.__array[pos] == num:
+                print("repetido")
+                return
+            pos = (pos + (pow(pos,i))) %self.__m
+            self.inReC(num, pos,i+1)
+
+    # insertar recursivo con busqueda de prueba lineal
+
+    def inRe(self, num, pos):
+        if self.__array[pos] == 0:
+            self.__array[pos] = num
+            return
+        else:
+            if self.__array[pos] == num:
+                print("ya existe")
+                return
+            pos = (pos + 1) % self.__m
+            self.inRe(num, pos)
 
     def hashmodulo(self, num):
         pos = num %self.__m
@@ -89,10 +118,11 @@ class HashAbierto:
 
 if __name__ == "__main__":
     h = HashAbierto(10)
-    h.insertar(2033)
-    h.insertar(5035)
-    h.insertar(4089)
-    h.insertar(5089)#posicion 7
-    h.insertar(5103)#posicion 7 - luego de la prueba lineal se inserta en la 8
+    h.insert(2033)
+    h.insert(5035)
+    h.insert(4089)
+    h.insert(5089)#posicion 7
+    h.insert(5103)#posicion 7 - luego de la prueba lineal se inserta en la 8
+    h.insert(5103)#posicion 7 - luego de la prueba lineal se inserta en la 8
 
     h.mostrar()

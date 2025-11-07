@@ -28,9 +28,8 @@ class Lista:
     def listaAdyacente(self):
         lista=[]
         aux = self.__cabeza
-        i=0
         while aux != None:
-            lista = lista+[aux.getDato()]
+            lista +=[aux.getDato()]
             aux = aux.getSig()
         return lista
         

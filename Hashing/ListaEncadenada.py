@@ -54,26 +54,8 @@ class ListaEncadenada:
 
 
 
-if __name__ == "__main__":
-    lista = ListaEncadenada()
-    lista.insertar(50,1)
-    lista.insertar(70,2)
-    lista.insertar(30,3)
-
-    #se inserta en la posicion determinada
-    lista.insertar(40,2)
-
-    #insertando no valido
-    lista.insertar(60, 1)
-    lista.insertar(90, 3)
-
-    lista.mostrar()
-
-    #suprimiendo
-    print("\n suprimiendo.....")
-    lista.suprimir(1)
-    print("\n")
-    lista.mostrar()
+#if __name__ == "__main__":
+    
 
 
 
